@@ -12,13 +12,15 @@ public class FeeCalculator {
 
     // Table 2: LAN cost by number of nodes
     public double lanCost(int nodes) {
-        if (nodes == 0) return 0;
-        if (nodes >= 2 && nodes <= 10) return 10000;
-        if (nodes <= 20) return 20000;
-        if (nodes <= 40) return 30000;
-        if (nodes <= 100) return 40000;
+    if (nodes < 0 || nodes == 1 || nodes > 100)
         throw new IllegalArgumentException("Nodes must be 0 or 2-100");
-    }
+    if (nodes == 0) return 0;
+    if (nodes >= 2 && nodes <= 10) return 10000;
+    if (nodes <= 20) return 20000;
+    if (nodes <= 40) return 30000;
+    if (nodes <= 100) return 40000;
+    return 0; // unreachable, but Java needs a return
+}
 
     // Task 4(b): PCs and LAN only
     public double pcAndLanCost(int pcs, int nodes) {

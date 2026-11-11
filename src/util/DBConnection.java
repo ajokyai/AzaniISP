@@ -11,4 +11,6 @@ private static final String PASS = System.getenv().getOrDefault("AZANI_DB_PASS",
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASS);
     }
+
 }
+

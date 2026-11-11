@@ -11,6 +11,11 @@ public class MainMenu extends JFrame {
     private static final Font SUB_FONT = new Font("SansSerif", Font.PLAIN, 13);
 
     public MainMenu() {
+        Color bg = new Color(0xF4F0FA);
+        UIManager.put("Panel.background", bg);
+        UIManager.put("CheckBox.background", bg);
+        UIManager.put("TabbedPane.contentAreaColor", bg);
+
         setTitle("Azani ISP Information System");
         setLayout(new BorderLayout());
 
@@ -18,13 +23,11 @@ public class MainMenu extends JFrame {
 
         RegisterForm registerPanel = new RegisterForm();
         PaymentForm paymentPanel = new PaymentForm();
-
         SurveyForm surveyPanel = new SurveyForm();
         BillingForm billingPanel = new BillingForm();
 
         ReportForm reportPanel = new ReportForm();
         reportPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
-        
 
         JTabbedPane tabs = new JTabbedPane();
         tabs.addTab("Register Institution", wrap(registerPanel));
@@ -32,12 +35,13 @@ public class MainMenu extends JFrame {
         tabs.addTab("Site Survey", wrap(surveyPanel));
         tabs.addTab("Billing", wrap(billingPanel));
         tabs.addTab("Reports", reportPanel);
-        // Reload the institution list whenever the Payment tab is opened
+
+        // Reload dropdowns whenever a tab is opened
         tabs.addChangeListener(e -> {
-    int i = tabs.getSelectedIndex();
-    if (i == 1) paymentPanel.refresh();
-    if (i == 2) surveyPanel.refresh();
-    if(i == 3 ) billingPanel.refresh();
+            int i = tabs.getSelectedIndex();
+            if (i == 1) paymentPanel.refresh();
+            if (i == 2) surveyPanel.refresh();
+            if (i == 3) billingPanel.refresh();
         });
 
         add(tabs, BorderLayout.CENTER);
